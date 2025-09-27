@@ -1,5 +1,3 @@
-# main.py
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from food_data import food_items
@@ -10,6 +8,11 @@ from collections import Counter
 # Create a Flask web server and enable CORS
 app = Flask(__name__)
 CORS(app)
+
+# Root route to avoid 404 on the home page
+@app.route('/')
+def index():
+    return "Backend is running"
 
 # This is the API endpoint. The user interface will send a POST request here.
 @app.route('/api/optimize-cart', methods=['POST'])
